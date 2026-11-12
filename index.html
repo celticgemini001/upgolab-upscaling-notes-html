@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Denoise before upscale: the ordering mistake that costs detail</title>
+<meta name="description" content="Why denoising must happen before upscaling, and how to test it free in the browser.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>body{max-width:760px;margin:0 auto;padding:48px 22px;font:17px/1.7 system-ui,sans-serif;color:#1a2233;background:#fbfcfe}h1{line-height:1.25}h2{margin-top:34px;color:#1e5cff}a{color:#1e5cff}</style>
+</head><body>
+<h1>Denoise before upscale: the ordering mistake that costs detail</h1>
+<p>Most blurry footage is not short of pixels. It is short of signal. Upscaling interpolates, so it enlarges compression blocks and sensor grain along with everything you wanted to recover.</p>
+<h2>The order that works</h2>
+<ol><li>Stabilise the clip.</li><li>Denoise with a <strong>temporal</strong> filter, not a spatial one.</li><li>Upscale at 2x, not 4x. Two times is usually the information ceiling.</li><li>Sharpen last, gently.</li></ol>
+<h2>Why 4x first is worse</h2>
+<p>A 4x model applied to noisy footage enlarges the noise. You then spend more time cleaning an upscaled mess than you would have spent denoising the original.</p>
+<h2>Trying it without a GPU</h2>
+<p><a href="https://upgolab.com/en/upscale">UpgoLAB runs photo and short-video upscaling entirely in the browser</a> &mdash; no install. Background at <a href="https://upgolab.com">upgolab.com</a>.</p>
+<h2>The 100% test</h2>
+<p>Open a single frame at 100% zoom. If the edges are soft <em>before</em> scaling, better software will not invent the detail. Change the source, not the slider.</p>
+<footer style="margin-top:44px;padding-top:16px;border-top:1px solid #dde4ef;color:#67718a;font-size:.9rem">Published by <a href="https://upgolab.com">UpgoLAB</a>.</footer>
+</body></html>
